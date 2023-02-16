@@ -1,0 +1,190 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--Bootstrap CDN-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+	integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class="container">
+	<h1 style="text-align: center;">Add New Car</h1>
+	<div class="row py-5 align-items-center">
+		<div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+			<img
+				src="https://en-media.thebetterindia.com/uploads/2022/07/Travel-1659034479.jpg?compress=true&quality=80&w=376&dpr=2.6"
+				alt="" class="img-fluid mb-3 d-none d-md-block">
+		</div>
+		<!--main content-->
+		<div id="Contact" class="col-md-7 col-lg-6 ml-auto">
+			<form th:action="@{/carsave}" th:object="${car}" method="post">
+				<div class="row">
+					<!-- Brand -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-user"></i>
+							</span>
+						</div>
+						<p id="id" th:field="${id}" th:text="${id}"
+							class="form-control bg-white border-left-0 border-md"></p>
+						<input th:name="vv" th:value="${id}" style="display: none;">
+					</div>
+
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-tags"></i>
+							</span>
+						</div>
+						<input id="firstName" type="text" name="brand" th:field="*{brand}"
+							placeholder="Brand"
+							class="form-control bg-white border-left-0 border-md">
+					</div>
+
+					<p th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- Model -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-tags"></i>
+							</span>
+						</div>
+						<input id="model" type="text" name="model" th:field="*{model}"
+							placeholder="Model"
+							class="form-control bg-white border-left-0 border-md">
+					</div>
+					<p th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- Fuel Type -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-gas-pump"></i>
+							</span>
+						</div>
+						<select id="firstName" th:field="*{fuelType}" type="text"
+							name="fuelType" placeholder="Fuel Type"
+							class="form-control bg-white border-left-0 border-md">
+							<option th:value="one">Fuel type</option>
+							<option th:value="Diesel">Diesel</option>
+							<option th:value="Petrol">Petrol</option>
+							<option th:value="Electrical">Electrical</option>
+						</select>
+					</div>
+					<p th:if="${#fields.hasErrors('fuelType')}" th:errors="*{fuelType}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- Color -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-paintbrush"></i>
+							</span>
+						</div>
+						<select id="firstName" type="text" th:field="*{colour}"
+							name="colour" placeholder="color"
+							class="form-control bg-white border-left-0 border-md">
+							<option th:value="one">Colour</option>
+							<option th:value="Red">Red</option>
+							<option th:value="Orange">Orange</option>
+							<option th:value="Blue">Blue</option>
+							<option th:value="Black">Black</option>
+							<option th:value="White">White</option>
+							<option th:value="Grey">Grey</option>
+							<option th:value="Yellow">Yellow</option>
+							<option th:value="Silver">Sliver</option>
+							<option th:value="Brown">Brown</option>
+						</select>
+					</div>
+					<p th:if="${#fields.hasErrors('colour')}" th:errors="*{colour}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- Seat Capacity -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-user"></i>
+							</span>
+						</div>
+						<select id="password" type="text" name="seatCapacity"
+							th:field="*{seatCapacity}" placeholder="Seat Capacity"
+							class="form-control bg-white border-left-0 border-md">
+							<option th:value="one">SeatCapacity</option>
+							<option th:value="4">4</option>
+							<option th:value="5">5</option>
+							<option th:value="6">6</option>
+							<option th:value="7">7</option>
+							<option th:value="8">8</option>
+							<option th:value="9">9</option>
+							<option th:value="10">10</option>
+						</select>
+					</div>
+					<p th:if="${#fields.hasErrors('seatCapacity')}"
+						th:errors="*{seatCapacity}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- year -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-calendar"></i>
+							</span>
+						</div>
+						<input name="year" th:field="*{year}" placeholder="Year"
+							class="form-control bg-white border-left-0 border-md" type="date"
+							id="reg-year">
+					</div>
+					<p th:if="${#fields.hasErrors('year')}" th:errors="*{year}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- RC book -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-file"></i>
+							</span>
+						</div>
+						<input th:field="*{rcBook}" name="rcBook" placeholder="RC book"
+							class="form-control bg-white border-left-0 border-md" type="file"
+							accept="application/pdf, application/vnd.ms-excel" />
+					</div>
+					<p th:if="${#fields.hasErrors('rcBook')}" th:errors="*{rcBook}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 35%;"></p>
+					<!-- Insurance Book -->
+					<div class="input-group col-lg-12 mb-4">
+						<div class="input-group-prepend">
+							<span
+								class="input-group-text bg-white px-4 border-md border-right-0">
+								<i class="fa-solid fa-file"></i>
+							</span>
+						</div>
+						<input placeholder="Insurance copy" th:field="*{insBook}"
+							class="form-control bg-white border-left-0 border-md"
+							name="insurence" type="file"
+							accept="application/pdf, application/vnd.ms-excel" />
+					</div>
+					<p th:if="${#fields.hasErrors('insBook')}" th:errors="*{insBook}"
+						style="text-align: center; color: red; margin-top: -20px; margin-left: 30%;"></p>
+					<!-- Submit Button -->
+					<div class="form-group col-lg-12 mx-auto mb-0">
+						<a th:href="@{/carsave}" class="btn btn-primary btn-block py-2">
+							<span class="font-weight-bold"> <input
+								class="btn btn-primary btn-block py-2" type="submit"
+								value="Submit!"></span>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</html>

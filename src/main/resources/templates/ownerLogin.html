@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Owner's Login</title>
+<link rel="stylesheet" th:href="@{/css/ownerLogin.css}">
+</head>
+<body>
+	<div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <form action="#" th:action="@{/ownerLogindb}" th:object="${owner}" method="post">
+        <p th:text="${error}" style="color: red;text-align: center"></p>
+        <h3>Owner's Login</h3>
+
+        <label for="username">ID</label>
+        <input type="text" placeholder="ID" id="id" th:field="*{id}" required>
+		<p th:text="${ierror}" style="color: red;text-align: center"></p>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" th:field="*{password}">
+		<p th:text="${perror}" style="color: red;text-align: center"></p>
+        
+        <input type="submit" class="button"/>
+    </form>
+</body>
+</html>

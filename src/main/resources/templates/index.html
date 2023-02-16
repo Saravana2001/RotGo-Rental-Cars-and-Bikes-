@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ROTGO</title>
+    <link rel="stylesheet" th:href="@{/css/IndexStyle.css}">
+    
+    <style>
+body {
+        font-family: 'Roboto';font-size: 16px;
+        overflow-x: hidden;
+}
+.card1{
+    background: #f5f5f5;
+    border-radius: 0px;
+    padding: 50px;
+}
+.anchor a{
+   width: 5px;
+}
+.col-md-5{
+    margin-left: 400px;
+    position: relative;
+   }
+   #feed{
+   background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/1600w/canva-rainbow-gradient-pink-and-purple-zoom-virtual-background-_Tcjok-d9b4.jpg");
+
+   }
+.rate {
+    float: left;
+    height: 46px;
+    margin-left: 144px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:dimgray;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+.aboutus-section {
+padding-top:60px;
+    padding-left: 5px ;
+    padding-bottom: 10px;
+}
+.aboutus-title {
+    font-size: 30px;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin: 0 0 39px;
+    padding: 0 0 11px;
+    position: relative;
+    text-transform: uppercase;
+    color: #000;
+}
+img{
+    height:270px;
+    width:280px;
+}
+.aboutus-title::after {
+    background: #fdb801 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 54px;
+}
+.aboutus-text {
+    color: #606060;
+    font-size: 13px;
+    line-height: 22px;
+    margin: 0 0 35px;
+}
+
+a:hover, a:active {
+    color: #ffb901;
+    text-decoration: none;
+    outline: 0;
+}
+.aboutus-more {
+    border: 1px solid #fdb801;
+    border-radius: 25px;
+    color: #fdb801;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 7px 20px;
+    text-transform: uppercase;
+}
+.feature{
+	
+	padding:10px;
+	width:500px;
+	height:340px;
+}
+.feature-content{
+	margin-left:60px;
+	margin-bottom:10px;
+	
+}
+.feature .feature-box .iconset {
+    
+    float: left;
+    position: absolute;
+    width: 25%;
+}
+.feature .feature-box .iconset::after {
+    background: #fdb801 none repeat scroll 0 0;
+    content: "";
+    height: 50%;
+    left: 43%;
+    position: absolute;
+    top: 100%;
+    width: 1px;
+}
+
+.feature .feature-box .feature-content h4 {
+    color: #0f0f0f;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin: 0 0 5px;
+}
+
+
+.feature .feature-box .feature-content {
+    float: left;
+    padding-left: 28px;
+    width: 100%;
+}
+.feature .feature-box .feature-content h4 {
+    color: #0f0f0f;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin: 0 0 5px;
+}
+.feature .feature-box .feature-content p {
+    color: #606060;
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.icon {
+    color : #f4b841;
+    padding:0px;
+    font-size:40px;
+    border: 1px solid #fdb801;
+    border-radius: 100px;
+    color: #fdb801;
+    font-size: 28px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    width: 70px;
+}
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 110vw;
+
+    padding-top: 40px;
+    color: #fff;
+}
+.footer-content{
+    display: flex;
+    align-items: center;
+    margin-left:450px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.footer-content h3{
+    font-size: 2.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+.footer-content p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+    color: #cacdd2;
+}
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+.socials li{
+    margin: 0 10px;
+}
+.socials a{
+    text-decoration: none;
+    color: #fff;
+    border: 1.1px solid white;
+    padding: 5px;
+
+    border-radius: 50%;
+
+}
+.socials a i{
+    font-size: 1.1rem;
+    width: 20px;
+
+
+    transition: color .4s ease;
+
+}
+.socials a:hover i{
+    color: aqua;
+}
+
+.footer-bottom{
+    background: #000;
+    width: 100vw;
+    padding: 20px;
+	padding-bottom: 40px;
+    text-align: center;
+}
+.footer-bottom p{
+float: left;
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+.footer-bottom p a{
+  color:#44bae8;
+  font-size: 16px;
+  text-decoration: none;
+}
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+.footer-menu{
+  float: right;
+
+}
+.footer-menu ul{
+  display: flex;
+}
+.footer-menu ul li{
+padding-right: 10px;
+display: block;
+}
+.footer-menu ul li a{
+  color: #cfd2d6;
+  text-decoration: none;
+}
+.footer-menu ul li a:hover{
+  color: #27bcda;
+}
+
+@media (max-width:500px) {
+.footer-menu ul{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+}
+.subscribe-area {
+background:rgb(32,178,170);
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+.pt-70 {
+    padding-top: 70px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.subscribe-text span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 5px;
+    text-decoration: solid;
+}
+.subscribe-text h2 {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 6px;
+}
+.subscribe-wrapper {
+    overflow: hidden;
+}
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.subscribe2-wrapper .subscribe-form input {
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    color: #fff;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 300;
+    height: 57px;
+    margin-right: 17px;
+    padding-left: 35px;
+    width: 70%;
+    cursor: pointer;
+}
+ 
+.subscribe2-wrapper .subscribe-form button {
+    background: #ffff;
+    border: none;
+    border-radius: 30px;
+    color: #4b5d73;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 18px 46px;
+    transition: all 0.3s ease 0s;
+}
+.subscribe2-wrapper .subscribe-form button:hover{
+  background: #ffc700;
+  color: #fff;
+}
+.subscribe2-wrapper .subscribe-form button i {
+    font-size: 18px;
+    padding-left: 5px;
+}
+</style>
+</head>
+<body>
+    <!-- <div class="wrap"> -->
+    <nav>
+        <container>
+            <div class="logo-wrap">
+                <div class="logo-text">ROT GO</div>
+            </div>
+            <div class="nav_menu">
+            <form th:action="@{/adminLogin}" method="post">
+					<input class="nav--button" type="submit" value="ADMIN" />
+				</form>
+                <ul>
+                    <li><a href="#aboutus" ><b>About Us</b></a></li>
+                    <li><a href="#boxcontainer"><b>Owners</b></a></li>
+                    <li><a href="#boxcontainer"><b>Customers</b></a></li>
+                    <li><a href="#feed" ><b>FeedBack</b></a></li>
+                    <li><a href="#card1"><b>FAQ's</b></a></li>
+                    <li><a href=""><b>More</b></a></li>
+                </ul>
+            </div>
+        </container>
+    </nav>
+    <div class="demo-cont">
+        <!-- slider start -->
+        <div class="fnc-slider example-slider">
+            <div class="fnc-slider__slides">
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-green m--active-slide">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Ford</span>
+                                </div>
+                                <div class="fnc-slide__heading-line">
+                                    <span>Mustang</span>
+                                </div>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-dark">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Royal</span>
+                                </div>
+                                <div class="fnc-slide__heading-line">
+                                    <span>Enfield</span>
+                                </div>
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-red">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Mercedes</span>
+                                </div>
+                                <div class="fnc-slide__heading-line">
+                                    <span>Benz</span>
+                                </div>
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-blue">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Ducati</span>
+                                </div>
+                                <div class="fnc-slide__heading-line">
+                                    <span></span>
+                                </div>
+                            </h2>
+                            <!-- <button type="button" class="fnc-slide__action-btn">
+                            Credits
+                            <span data-text="Credits">Credits</span>
+                          </button> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+            </div>
+            <nav class="fnc-nav">
+                <div class="fnc-nav__bgs">
+                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                    <div class="fnc-nav__bg m--navbg-red"></div>
+                    <div class="fnc-nav__bg m--navbg-blue"></div>
+                </div>
+                <div class="fnc-nav__controls">
+                    <button class="fnc-nav__control">
+                        Ford Mustang
+                        <span class="fnc-nav__control-progress"></span>
+                    </button>
+                    <button class="fnc-nav__control">
+                        Royal Enfield
+                        <span class="fnc-nav__control-progress"></span>
+                    </button>
+                    <button class="fnc-nav__control">
+                        Mercedes Benz
+                        <span class="fnc-nav__control-progress"></span>
+                    </button>
+                    <button class="fnc-nav__control">
+                        Ducati
+                        <span class="fnc-nav__control-progress"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="box-container" id="boxcontainer">
+        <div class="card">
+            <div class="social"></div>
+            <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZxub6hsCPpJFn6jmQvDl5CDJLroGdg-yLXJV1KcCHMjKpuwd8E6zJ7X6U3TUEjlS59ig&usqp=CAU"/>
+                    title="Our Vehicles" /></div>
+            <div class="content">
+                <h3 class="title">Vehicle Owners</h3><span></span>
+                <p>
+                	<a th:href="@{/ownerLogin}"><input type="submit" value="Login" class="login-btn" /></a><br><br>
+                	<a th:href="@{/ownerSignup}"><input type="submit" value="SignUp" class="signup-btn" /></a>
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="social"></div>
+            <div class="pic"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZxub6hsCPpJFn6jmQvDl5CDJLroGdg-yLXJV1KcCHMjKpuwd8E6zJ7X6U3TUEjlS59ig&usqp=CAU"
+                    title="Customer Relationships" /></div>
+            <div class="content">
+                <h3 class="title">Customers</h3><span></span>
+                <p>
+                	<a th:href="@{/customerLogin}"><input type="submit" value="Login" class="login-btn" /></a><br><br>
+                	<a th:href="@{/customerSignup}"><input type="submit" value="SignUp" class="signup-btn" /></a>
+                </p>
+            </div>
+        </div>
+    </div>
+   <!-- Faq -->
+   <div class="card1" id="card1">
+    <h3 class="card-header1"><u>FAQ's</u></h3>
+    <div class="anchor">
+        <a href="#book"><button type="button" class="btn btn-primary">Book Car</button></a>
+       <a href=""> <button type="button" class="btn btn-primary">Accesories</button></a>
+       <a href="#find"><button type="button" class="btn btn-primary">Find Us</button></a>
+       <a href=""> <button type="button" class="btn btn-primary">Service</button></a>
+        <a href=""><button type="button" class="btn btn-primary">Mechanic</button></a>
+        <a href=""><button type="button" class="btn btn-primary">Coupons</button></a>
+        <a href=""><button type="button" class="btn btn-primary">Refund</button></a>
+        <a href=""><button type="button" class="btn btn-primary">Safe and Security</button></a>
+        
+    </div>
+    <div class="card-body1">
+      <h2 class="card-title" id="find">Find Us?</h2>
+      <p class="card-text">Find Us is a feature to locate a nearest Hub of US</p>
+    </div>
+  </div>
+    <div id="feed" style="padding: 10px">
+   <div class="row">
+  <div class="col-md-5">
+    <div class="card mb-4" style=" margin-top: 70px;">
+      <div class="card-header py-3">
+        <h2 class="mb-0">Feedback</form></h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <!-- Text input for name-->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form7Example4">Name</label>
+            <input type="text" id="form7Example4" class="form-control" />
+          </div>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form7Example5">Email</label>
+            <input type="email" id="form7Example5" class="form-control" />
+          </div>
+          <!-- Message input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form7Example7">Comments (Optional)</label>
+            <textarea class="form-control" id="form7Example7" rows="4"></textarea>
+          </div>
+          <div class="lab"><label><u>RateUs</u></label></div>
+          <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="text">1 star</label>
+          </div>
+          
+        </form>
+       
+      </div>
+    </div>
+     
+  </div>
+  
+</div>
+<button style="margin-left: 600px" type="button" class="btn btn-primary">Submit</button>
+  </div>
+    <!-- About Us -->
+    <div class="aboutus-section" id="aboutus">
+        <div class="container" style="margin-left: 80px;margin-top: -20px;">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="aboutus">
+                        <h2 class="aboutus-title">About Us</h2>
+                        <h4 class="aboutus-text">Join with us for Upgrading the rental cars and bikes to the next level.</h4>
+                        <h3 class="aboutus-text">Cheap and affordable rental cars and bikes with 100% Customer satisfaction for past 10 years.<br><br>We Deliver to bring joy 💖 !</h3>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="aboutus-banner">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPbo0sLeeHtgIbk93WdLVr58jfUdbbhB5NhIa8WHnZYkXXaLboe-MVWCpMxPmk46qeKRk&usqp=CAU" alt="">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="feature">
+                        <div class="feature-box">
+                            <div class="clearfix">
+                                <div class="iconset">
+                                    <span class="glyphicon glyphicon-cog icon"></span>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Rental Cars</h4>
+                                    <p>We provide Highend cars to lowend cars for your convenience and a safe ride with easy payment and satisfied customer service</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <div class="clearfix">
+                                <div class="iconset">
+                                    <span class="glyphicon glyphicon-cog icon"></span>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Rental bikes</h4>
+                                    <p>We provide Highend bikes to lowend bikes for your convenience and a safe ride with easy payment and satisfied customer service</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-box">
+                            <div class="clearfix">
+                                <div class="iconset">
+                                    <span class="glyphicon glyphicon-cog icon"></span>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Features</h4>
+                                    <p>24/7 Customer support and perfectly verified cars and bikes with all documentation and verified Genuine customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<section class="subscribe-area pb-50 pt-70">
+  <div class="container">
+    <div class="row">
+            <div class="col-md-4">
+              <div class="subscribe-text mb-15">
+                <span>JOIN OUR</span>
+                <H2>ROTGO</H2>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="subscribe-wrapper subscribe2-wrapper mb-15">
+                <div class="subscribe-form">
+                  <form action="#">
+                    <input placeholder="enter your email address" type="email">
+                    <button>subscribe <i class="fas fa-long-arrow-alt-right"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  </div>
+  </section>
+
+<footer>
+    <div class="footer-content">
+        <h3>RotGo.com</h3>
+        <p>Rental cars and bikes for cheap and affordable price with all documentations</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+        </ul>
+        
+    </div>
+    
+</footer>
+<div style="background-color: #000;width:110vw">
+        <p style="margin-left: 500px;color:white;">copyright &copy; <a href="#">all rights reserved by RotGo developers-2022</a>  </p>
+   </div>
+    <script type="text/javascript" th:src="@{/Script/IndexScript.js}"></script>
+</body>
+</html>

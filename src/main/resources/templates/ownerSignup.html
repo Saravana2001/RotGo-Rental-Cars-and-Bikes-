@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Owner SignUp</title>
+	 <!--Bootstrap CDN-->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ <!--Fontawesome-->
+ <!--  <script src="https://kit.fontawesome.com/4d0b4c932e.js" crossorigin="anonymous"></script> -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- Registeration Form -->
+</head>
+<body>
+
+ 
+ <div class="container">
+    <h1 style="text-align: center;">Create an Account</h1>
+   <div class="row py-5 align-items-center">
+       <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+  <img src="https://en-media.thebetterindia.com/uploads/2022/07/Travel-1659034479.jpg?compress=true&quality=80&w=376&dpr=2.6" alt="" class="img-fluid mb-3 d-none d-md-block">
+       </div>
+      <!--main content-->
+       <div id="Contact" class="col-md-7 col-lg-6 ml-auto">
+           <form action="#" th:action="@{/ownersave}" th:object="${owner}" method="post">
+               <div class="row">
+                   <!-- Name -->
+                   <div class="input-group col-lg-12 mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </div>
+                    <input id="firstName" type="text" name="firstName" th:field="*{name}" placeholder="Name" class="form-control bg-white border-left-0 border-md">          	
+                </div>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="text-align: center; color: red;margin-top: -20px;margin-left: 35%;"></p>
+                   <!-- Email Address -->
+                   <div class="input-group col-lg-12 mb-4">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text bg-white px-4 border-md border-right-0">
+                               <i class="fa-solid fa-envelope"></i>
+                           </span>
+                       </div>
+                       <input id="email" type="email" th:field="*{email}" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                   </div>
+                   <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="text-align: center; color: red;margin-top: -20px;margin-left: 35%;"></p>
+                   <!-- Phone Number -->
+                   <div class="input-group col-lg-12 mb-4">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text bg-white px-4 border-md border-right-0">
+                               <i class="fa-solid fa-phone"></i>&nbsp +91
+                           </span>
+                       </div>
+                       <input id="phoneNumber" placeholder="Phone Number" type="tel" name="phone" th:field="*{phone}" class="form-control bg-white border-md border-left-0 pl-3">
+                   	   
+                   </div>
+                   <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="text-align: center; color: red;margin-top: -20px;margin-left: 35%;"></p>
+                   <!-- Aadhaar -->
+                  <div class="input-group col-lg-12 mb-4">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text bg-white px-4 border-md border-right-0">
+                               <i class="fa-solid fa-address-card"></i>
+                           </span>
+                       </div>
+                       <input id="aadhaar" type="text" name="aadhaar" placeholder="xxxx xxxx xxxx" maxlength="14" th:field="*{aadhar}" class="form-control bg-white border-left-0 border-md">
+                       
+                    </div>
+                    <p th:if="${#fields.hasErrors('aadhar')}" th:errors="*{aadhar}" style="text-align: center; color: red;margin-top: -20px;margin-left: 35%;"></p>
+                   <!-- Password -->
+                   <div class="input-group col-lg-6 mb-4">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text bg-white px-4 border-md border-right-0">
+                               <i class="fa-solid fa-lock"></i>
+                           </span>
+                       </div>
+                       <input id="password" type="text" th:field="*{password}" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+    
+                   </div>
+                   <!-- Password Confirmation -->
+                   <div class="input-group col-lg-6 mb-4">
+                       <div class="input-group-prepend">
+                           <span class="input-group-text bg-white px-4 border-md border-right-0">
+                               <i class="fa-solid fa-lock"></i>
+                           </span>
+                       </div>
+                       <input id="passwordConfirmation" type="text" th:name="cpass" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                  	   
+                  </div>
+                  <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="text-align: center; color: red;margin-top: -20px;margin-left: 15%;"></p>
+                 <!-- Address -->
+                 <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                    </div>
+                    <input id="door" type="text" name="door" th:field="*{oaddress.door}" placeholder="Door No., Street" class="form-control bg-white border-left-0 border-md">
+                </div>
+                
+                <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </span>
+                    </div>
+                    <input id="city" type="text" name="city" th:field="*{oaddress.city}" placeholder="City" class="form-control bg-white border-left-0 border-md">
+               </div>
+               <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </span>
+                </div>
+                <input id="state" type="text" name="state" th:field="*{oaddress.state}" placeholder="State" class="form-control bg-white border-left-0 border-md">
+            </div>
+            <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fa-solid fa-signs-post"></i>
+                    </span>
+                </div>
+                
+                <input id="pincode" type="text" name="pincode" th:field="*{oaddress.pincode}" maxlength="6" placeholder="Pincode" class="form-control bg-white border-left-0 border-md">
+           	
+           </div>
+           <p th:text="${pinerror}" style="color: red;margin-left:165px"></p>
+           <p th:if="${#fields.hasErrors('oaddress.pincode')}" th:errors="*{oaddress.pincode}" style="text-align: center; color: red;margin-top: -20px;margin-left: 35%;"></p>
+                   <!-- Submit Button -->
+                   <div class="form-group col-lg-12 mx-auto mb-0">
+                       <a href="#" class="btn btn-primary btn-block py-2">
+                           <span class="font-weight-bold"><input class="btn btn-primary btn-block py-2" type="submit" value="Create your account"></span>
+                       </a>
+                   </div>
+      
+                   <!-- Already Registered -->
+                   <div class="text-center w-100">
+                       <p id="link10" class="text-muted font-weight-bold">Already Registered? 
+                         <a th:href="@{ownerLogin}" class="text-black ml-2">Login</a></p>
+                   </div>
+               </div>
+           </form>
+       </div>
+   </div>
+ </div>
+</body>
+</html>

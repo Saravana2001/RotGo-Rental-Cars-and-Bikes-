@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+    <title>Owner Home Page</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/adminStyle.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/ownerVehicleDetail.css}">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+
+        $(".hamburger .con").click(function () {
+            $(".wrapper").toggleClass("active")
+        })
+
+        $(".top_navbar .fas").click(function () {
+            $(".profile_dd").toggleClass("active");
+        });
+    })
+
+
+    $(document).ready(function () {
+
+        $(".dashboard_btn").addClass("active");
+        $(".dashboard").removeClass("hidden");
+        $(".vehicle_details").addClass("hidden");
+        $(".owner_details").addClass("hidden");
+        $(".customer_details").addClass("hidden");
+
+        $(".dashboard_btn").click(function () {
+            $(".dashboard_btn").addClass("active");
+            $(".vehicles_btn").removeClass("active");
+            $(".owner_btn").removeClass("active");
+            $(".dashboard").removeClass("hidden");
+            $(".vehicle_details").addClass("hidden");
+            $(".owner_details").addClass("hidden");
+            $(".customer_details").addClass("hidden");
+        })
+        $(".vehicles_btn").click(function () {
+            $(".dashboard_btn").removeClass("active");
+            $(".owner_btn").removeClass("active");
+            $(".customer_btn").removeClass("active");
+            $(".vehicles_btn").addClass("active");
+            $(".dashboard").addClass("hidden");
+            $(".customer_details").addClass("hidden");
+            $(".owner_details").addClass("hidden");
+            $(".vehicle_details").removeClass("hidden");
+
+        });
+        $(".owner_btn").click(function () {
+            $(".dashboard_btn").removeClass("active");
+            $(".customer_btn").removeClass("active");
+            $(".vehicles_btn").removeClass("active");
+            $(".owner_btn").addClass("active");
+            $(".dashboard").addClass("hidden");
+            $(".vehicle_details").addClass("hidden");
+            $(".customer_details").addClass("hidden");
+            $(".owner_details").removeClass("hidden");
+        });
+        $(".customer_btn").click(function () {
+            $(".dashboard_btn").removeClass("active");
+            $(".vehicles_btn").removeClass("active");
+            $(".owner_btn").removeClass("active");
+            $(".customer_btn").addClass("active");
+            $(".dashboard").addClass("hidden");
+            $(".vehicle_details").addClass("hidden");
+            $(".owner_details").addClass("hidden");
+            $(".customer_details").removeClass("hidden");
+        });
+
+    });
+	</script>
+	<style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+	<div class="wrapper">
+        <div class="top_navbar">
+
+            <div class="hamburger">
+                <div class="con">
+                    <div class="bar top"></div>
+                    <div class="bar middle"></div>
+                    <div class="bar bottom"></div>
+                </div>
+            </div>
+
+
+            <div class="menu">
+                <div class="logo">
+                    RotGo
+                </div>
+                <div class="right_menu">
+                    <ul>
+                        <li><i class="fas fa-user"></i>
+                            <div class="profile_dd ">
+                                <div class="dd_item"><a th:href="@{'/owneredit/'+${ownerlist.getId()}}">Profile</a></div>
+                                <div class="dd_item"><a th:href="@{/www.Rotgo.com}">Logout</a></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_container" >
+            <div class="sidebar">
+                <div class="sidebar__inner">
+                    <div class="profile" style="color: black;">
+                        <div class="img">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZxub6hsCPpJFn6jmQvDl5CDJLroGdg-yLXJV1KcCHMjKpuwd8E6zJ7X6U3TUEjlS59ig&usqp=CAU" style="border-radius: 50%" alt="profile_pic">
+                        </div>
+                        <div class="profile_info" >
+                            <p>Welcome</p>
+                            <p class="profile_name" th:text="${ownerlist.getName()}" style="color:white"></p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#" class="dashboard_btn" >
+                                <span class="icon"><i class="fas fa-dice-d6"></i></span>
+                                <span class="title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="vehicles_btn " >
+                                <span class="icon"><i class="fab fa-delicious"></i></span>
+                                <span class="title">View vehicles</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/www.Rotgo.com}" >
+                                <span class="icon"><i class="fas fa-border-all"></i></span>
+                                <span class="title">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- dashboard -->
+            <div class="main-container dashboard" style="margin-left: 40px;">
+                <section class="tiels">
+                    <div class="hero-body" style="margin-top: 130px;">
+                        <div class="container">
+                            <h1 class="title" th:text="${ownerlist.getName() +'&nbsp;-&nbsp;'+ ownerlist.getId()}"></h1>
+                            <h2 class="subtitle">
+                            
+                                I hope you are having a great day!
+                            </h2>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container" style="margin-top: -24px;">
+                    <div class="row align-items-center" style="text-align:center;">
+                        <div class="col"
+                            style="background-color: #248b80; color: #fff;  margin-right: 20px; width: 280px; height: 200px; border-radius: 9px;">
+                            <article class="tile" style="margin-top: 60px;">
+                            <p class="title" th:text="${bikelist.size() + carlist.size()}"></p>
+                                <p class="subtitle">Total Vehicles</p>
+                            </article>
+                        </div>
+                        <div class="col"
+                            style="background-color: #248b80; width: 280px; color: #fff;  margin-right: 20px; height: 200px; border-radius: 9px;">
+                            <article class="tile" style="margin-top: 60px;">
+                             <p class="title" th:text="${bikelist.size()}"></p>
+                                <p class="subtitle">Bikes</p>
+                            </article>
+                        </div>
+                        <div class="col"
+                            style="background-color: #248b80; width: 280px; color: #fff; margin-right: 20px; height: 200px; border-radius: 9px;">
+                            <article class="tile" style="margin-top: 60px;">
+                             <p class="title" th:text="${carlist.size()}"></p>
+                                <p class="subtitle">Cars</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- dashboard end -->
+
+            <!-- view vehicle details -->
+            <div class="main-container vehicle_details" style="margin-left: -5px;" id="vehicle">
+                <div class="container">
+                    <div class="table-responsive">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h2><b>Bike Details</b></h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <a th:href="@{'/newbike/' + ${idd}}"> 
+                                        <input type="submit" class="btn btn-success"  value="Add New Vehicle" /></a>
+                                        
+                                        <a th:href="@{'/bikealldelete/' + ${idd}}"> 
+                                        <input type="submit" class="btn btn-danger"  value="Delete All" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Brand</th>
+                                        <th>Model</th>
+                                        <th>Fuel Type</th>
+                                        <th>Colour</th>
+                                        <th>Year</th>
+                                        <th>RC Book</th>
+                                        <th>Insurance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="b : ${bikelist}">
+                                        <td th:text="${b.id}"></td>
+                                        <td th:text="${b.brand}"></td>
+                                        <td th:text="${b.model}"></td>
+                                        <td th:text="${b.fuelType}"></td>
+                                        <td th:text="${b.colour}"></td>
+                                        <td th:text="${b.year}"></td>
+                                        <td><a th:href="${b.rcBook}" target=_blank>rcbook.pdf</a></td>
+                                        <td><a th:href="${b.insBook}" target=_blank>insurance.pdf</a></td>
+                                        <td>
+                                            <a th:href="@{'/bikeedit/'+${b.id}}"><i class='fas fa-pen' style="font-size: 20px;color: orange"></i></a>
+                                            <a th:href="@{'/bikeeachdelete/'+${b.id}+'/'+${ownerlist.getId()}}"><i class='fas fa-trash' style="font-size: 20px;color: red"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="margin-top: -70px;">
+                    <div class="table-responsive">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h2><b>Car Details</b></h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        
+                                        <a th:href="@{'/addcar/' + ${idd}}"> 
+                                        <input type="submit" class="btn btn-success"  value="Add New Vehicle" /></a>
+                                        <a th:href="@{'/caralldelete/' + ${idd}}"> 
+                                        <input type="submit" class="btn btn-danger"  value="Delete All" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Brand</th>
+                                        <th>Model</th>
+                                        <th>Fuel Type</th>
+                                        <th>Colour</th>
+                                        <th>Year</th>
+                                        <th>Seat Capacity</th>
+                                        <th>RC Book</th>
+                                        <th>Insurance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    <tr th:each="b : ${carlist}">
+                                        <td th:text="${b.id}"></td>
+                                        <td th:text="${b.brand}"></td>
+                                        <td th:text="${b.model}"></td>
+                                        <td th:text="${b.fuelType}"></td>
+                                        <td th:text="${b.colour}"></td>
+                                        <td th:text="${b.year}"></td>
+                                        <td th:text="${b.seatCapacity}"></td>
+                                        <td><a th:href="${b.rcBook}" target=_blank>rcbook.pdf</a></td>
+                                        <td><a th:href="${b.insBook}" target=_blank>insurance.pdf</a></td>
+                                        <td>
+                                        
+                                            <a th:href="@{'/caredit/'+${b.id}}"><i class='fas fa-pen' style="font-size: 20px;color: orange"></i></a>
+                                            <a th:href="@{'/careachdelete/'+${b.id}+'/'+${ownerlist.getId()}}"><i class='fas fa-trash' style="font-size: 20px;color: red"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- view vehicle details end -->
+            <!-- view Customer details end -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Record</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete these Records?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
